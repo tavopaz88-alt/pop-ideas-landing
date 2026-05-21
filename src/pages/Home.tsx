@@ -48,8 +48,14 @@ export default function Home() {
       <section className="py-12 bg-surface-container-lowest border-y border-outline-variant/30">
         <div className="px-4 md:px-margin-desktop max-w-7xl mx-auto flex flex-col items-center gap-6">
           <p className="text-xs font-bold text-on-surface-variant/60 uppercase tracking-widest">Confían en nosotros</p>
-          <div className="hover:opacity-100 opacity-80 transition-all duration-500">
-            <img src={caballeroVest} alt="Transportes Caballero" className="h-40 w-auto object-contain rounded-lg" />
+          <div className="flex items-center gap-4 px-8 py-4 rounded-2xl bg-surface-container-low border border-outline-variant hover:border-primary/30 transition-all duration-300">
+            <div className="w-12 h-12 rounded-xl bg-secondary-container flex items-center justify-center shrink-0">
+              <span className="material-symbols-outlined text-secondary text-[28px]">local_shipping</span>
+            </div>
+            <div>
+              <p className="text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-0.5" style={{ fontFamily: "Space Grotesk, sans-serif" }}>Cliente verificado</p>
+              <p className="text-xl font-extrabold text-on-surface" style={{ fontFamily: "Epilogue, sans-serif" }}>Transportes Caballero</p>
+            </div>
           </div>
         </div>
       </section>
