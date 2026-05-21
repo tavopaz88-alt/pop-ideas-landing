@@ -98,8 +98,8 @@ export default function Catalog() {
             if (product.featured) {
               return (
                 <div key={product.id} className={`md:col-span-8 group relative bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden flex ${product.reverse ? "flex-col-reverse md:flex-row" : "flex-col md:flex-row"} h-full`}>
-                  <div className={`${product.reverse ? "md:w-1/2 order-last md:order-last" : "md:w-1/2"} overflow-hidden`}>
-                    <img src={product.img ?? ""} alt={product.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                  <div className={`${product.reverse ? "md:w-1/2 order-last md:order-last" : "md:w-1/2"} overflow-hidden bg-surface-container-low flex items-center justify-center`}>
+                    <img src={product.img ?? ""} alt={product.name} className={`w-full h-full group-hover:scale-105 transition-transform duration-700 ${product.reverse ? "object-contain p-4" : "object-cover"}`} />
                   </div>
                   <div className={`${product.reverse ? "md:w-1/2 order-first md:order-first" : "md:w-1/2"} p-8 flex flex-col justify-between`}>
                     <div>

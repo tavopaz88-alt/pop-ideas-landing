@@ -9,7 +9,7 @@ export default function Footer() {
           <Link to="/">
             <img src={logo} alt="Pop Ideas" className="h-12 w-auto" />
           </Link>
-          <p className="text-xs text-on-surface-variant">© 2024 Pop Ideas. Modern Craftsmanship for Custom Merch.</p>
+          <p className="text-xs text-on-surface-variant">© 2026 Pop Ideas. Modern Craftsmanship for Custom Merch.</p>
         </div>
         <div className="flex flex-wrap justify-center gap-6">
           {["Privacy Policy", "Terms of Service", "Shipping Info", "FAQs"].map((item) => (
