@@ -7,6 +7,7 @@ const PRINT_IMG = "https://lh3.googleusercontent.com/aida-public/AB6AXuD9ASLl6Mu
 const POLO_IMG = "https://lh3.googleusercontent.com/aida-public/AB6AXuAjJEWglZFLTbKWRqRkr_fajlGPQlhsNSQZPda-pMUAD-KcUEHL3GBhAxT5mDfjoiiwEGlYWnIXuDL56Xxxowijlxt3NE5h9iyVKVfftDaGMIAuIdQXN4C458fD3AVxapXseE92QwWTMsfXXY_lLVkrgLTyxLQ7vSHLb3AcYHd5pQV707NFGDtkoyVqdZa_m3OUjJnVE_UlyPuuyGwHZcO9Fl27YNvOHq2QQTTJn72gu7w7HkB1VnQV1ze-NTZm1z4JjEPdMzrXDV9X";
 const TSHIRT_IMG = "https://lh3.googleusercontent.com/aida-public/AB6AXuDU1BrBFocH4RnfAa0N2fFXtHtV6EVI8okv959xoCjLzb7YD7MxX2d6VFRVKkFHenqZVmXJRlUTEV8cNlj8RNTadiUixJ56cXl1PXYabWA-GJL4QbRuErnieZG95qtRAao-7YToXZChfCjrqgJ90CueNDVt7Tfsuqi0TOdMEfc0PMH9g34mpYftcfUkwO7voljw0Z4fcpmiuJqyaulkLIhd-IlDY6pY26yx3mzwrS50hKlp2IMXRiyyMEwje_5QIFI5OT41XTsPY0qQ";
 const UNIFORME_IMG = "https://lh3.googleusercontent.com/aida-public/AB6AXuDVBB8-uwI095fCROQA_Q3Svyt_5hPW3DRai3__orwTju4QEeIwpsaEW6-t8vu02IYNobWyF3Nmn_BgLTjDWWxXaZiTCijvb8n2HbsHQvsPyTgvunob7hTTk_wutfy9pIrY73Ymm6_WAFIjj0cf2hfcicd0wGcuNTFBslL8v3EpiAegE0uzWha7ZlF0f-fyShf-wOHo5Cwdt1JoeRUpRbxaSp3ETDrtE3baVO3iB7yM-SbxD8lE6SDYIP1iTdaDLLQbWqJHYB0U7YJz";
+const TERMO_IMG = "https://lh3.googleusercontent.com/aida-public/AB6AXuCEBO-lp67VOYs_LLI8wwdZltPKXQ773PKYPFVHKXUx8cbSkbLY19CiyV8oy24NE_IAc9KPgA--hJzvqoa_JqjoJYzYN98udpovZChTHBLrn868alAfC00pcf5fWBW6rS-jITzS519QblGJS71YEp1fC8AEog7LO6KLiN_wwSOnUY44pnzZtNuTT0-KyH1wJO4qnJ0_LuClXBdSWbiOC0eq3JsrXnIs2eKv32rcpleboXkO_w0g9DMcZnYpTZzeI0UsEf0fVVU-oJmJ";
 
 export default function Home() {
   return (
@@ -66,32 +67,60 @@ export default function Home() {
               <span className="bg-secondary-fixed text-on-secondary-fixed px-4 py-1 rounded-full text-xs font-bold">Novedades</span>
             </div>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
+
+          {/* Row 1: 3 large cards */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
             {[
-              { img: POLO_IMG, category: "Textil", name: "Polos", span: "col-span-2" },
-              { img: TSHIRT_IMG, category: "Casual", name: "T-shirts", span: "col-span-2" },
-              { img: UNIFORME_IMG, category: "Corporate", name: "Uniformes", span: "col-span-2" },
-            ].map(({ img, category, name, span }) => (
-              <div key={name} className={`group ${span} flex flex-col bg-surface-container-lowest rounded-xl pop-shadow border border-outline-variant overflow-hidden hover:-translate-y-1 transition-all duration-300`}>
+              { img: POLO_IMG, category: "Textil", name: "Camisas Polo" },
+              { img: TSHIRT_IMG, category: "Casual", name: "T-shirts / Playeras" },
+              { img: caballeroVest, category: "Corporativo", name: "Uniformes Corporativos" },
+            ].map(({ img, category, name }) => (
+              <Link to="/catalog" key={name} className="group flex flex-col bg-surface-container-lowest rounded-xl pop-shadow border border-outline-variant overflow-hidden hover:-translate-y-1 transition-all duration-300">
                 <div className="aspect-[4/3] bg-surface-container overflow-hidden">
                   <img className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src={img} alt={name} />
                 </div>
-                <div className="p-6 flex justify-between items-center">
+                <div className="p-5 flex justify-between items-center">
                   <div>
                     <span className="text-xs font-bold text-secondary uppercase">{category}</span>
-                    <h3 className="text-xl font-bold">{name}</h3>
+                    <h3 className="text-lg font-bold">{name}</h3>
                   </div>
                   <span className="material-symbols-outlined text-primary group-hover:translate-x-1 transition-transform">arrow_forward</span>
                 </div>
-              </div>
+              </Link>
             ))}
+          </div>
+
+          {/* Row 2: 3 medium cards */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
             {[
-              { icon: "child_hat", name: "Gorras", img: null },
-              { icon: "coffee", name: "Tazas", img: tazaMockup },
-              { icon: "water_bottle", name: "Termos", img: null },
-            ].map(({ icon, name, img }) => (
-              <div key={name} className="group flex flex-col bg-surface-container-lowest rounded-xl pop-shadow border border-outline-variant overflow-hidden hover:-translate-y-1 transition-all duration-300">
-                <div className="aspect-square overflow-hidden flex items-center justify-center bg-surface-container">
+              { img: TSHIRT_IMG, category: "Textil", name: "Camisas Manga Larga" },
+              { img: UNIFORME_IMG, category: "Deportivo", name: "Uniformes Deportivos" },
+              { img: TERMO_IMG, category: "Accesorios", name: "Termos" },
+            ].map(({ img, category, name }) => (
+              <Link to="/catalog" key={name} className="group flex flex-col bg-surface-container-lowest rounded-xl pop-shadow border border-outline-variant overflow-hidden hover:-translate-y-1 transition-all duration-300">
+                <div className="aspect-[4/3] bg-surface-container overflow-hidden">
+                  <img className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src={img} alt={name} />
+                </div>
+                <div className="p-5 flex justify-between items-center">
+                  <div>
+                    <span className="text-xs font-bold text-secondary uppercase">{category}</span>
+                    <h3 className="text-lg font-bold">{name}</h3>
+                  </div>
+                  <span className="material-symbols-outlined text-primary group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                </div>
+              </Link>
+            ))}
+          </div>
+
+          {/* Row 3: 3 small cards */}
+          <div className="grid grid-cols-3 gap-6 mb-6">
+            {[
+              { img: tazaMockup, icon: "coffee", name: "Tazas" },
+              { img: tazaMockup, icon: "local_drink", name: "Vasos" },
+              { img: null, icon: "child_hat", name: "Gorras" },
+            ].map(({ img, icon, name }) => (
+              <Link to="/catalog" key={name} className="group flex flex-col bg-surface-container-lowest rounded-xl pop-shadow border border-outline-variant overflow-hidden hover:-translate-y-1 transition-all duration-300">
+                <div className="aspect-square bg-surface-container overflow-hidden flex items-center justify-center">
                   {img
                     ? <img src={img} alt={name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                     : <span className="material-symbols-outlined text-primary text-[48px]">{icon}</span>
@@ -100,10 +129,11 @@ export default function Home() {
                 <div className="p-4 text-center">
                   <h3 className="text-sm font-bold">{name}</h3>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
-          <div className="text-center mt-10">
+
+          <div className="text-center mt-8">
             <Link to="/catalog" className="inline-flex items-center gap-2 bg-primary text-on-primary px-8 py-3 rounded-lg font-bold text-sm hover:opacity-90 transition-opacity">
               Ver catálogo completo <span className="material-symbols-outlined text-[18px]">arrow_forward</span>
             </Link>

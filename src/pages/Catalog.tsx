@@ -1,20 +1,26 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import tazaMockup from "../assets/taza-mockup.jpeg";
+import caballeroVest from "../assets/caballero-vest.jpeg";
 
 const POLO_IMG = "https://lh3.googleusercontent.com/aida-public/AB6AXuBAY6ZIvsdgTrmqbCkJ6aPYPxOXT_gcarpQ6lFTOCOqgcTFvkiifLctZs9cWPVLs9rb0Hp16YyUW3_2-HoDZGRY4wZuzOgWYIhQXrSNNczJgfY8EQjam7uXv1U28C1AZ2Up1zwpsPF8hQ7tDnwpsXK6PMW-x6aH-VIeJJzWFb3NreWLI4zMc2J3o_8iQHGxlJq7Jb8UN9TSMlSbJsOUgiUoYikZW-kqbOsEgPxioJzkYCWZ5Dv1NwJfKUqhcu9pWvt5aghKNu4HSTcn";
+const TSHIRT_IMG = "https://lh3.googleusercontent.com/aida-public/AB6AXuDU1BrBFocH4RnfAa0N2fFXtHtV6EVI8okv959xoCjLzb7YD7MxX2d6VFRVKkFHenqZVmXJRlUTEV8cNlj8RNTadiUixJ56cXl1PXYabWA-GJL4QbRuErnieZG95qtRAao-7YToXZChfCjrqgJ90CueNDVt7Tfsuqi0TOdMEfc0PMH9g34mpYftcfUkwO7voljw0Z4fcpmiuJqyaulkLIhd-IlDY6pY26yx3mzwrS50hKlp2IMXRiyyMEwje_5QIFI5OT41XTsPY0qQ";
+const UNIFORME_IMG = "https://lh3.googleusercontent.com/aida-public/AB6AXuDVBB8-uwI095fCROQA_Q3Svyt_5hPW3DRai3__orwTju4QEeIwpsaEW6-t8vu02IYNobWyF3Nmn_BgLTjDWWxXaZiTCijvb8n2HbsHQvsPyTgvunob7hTTk_wutfy9pIrY73Ymm6_WAFIjj0cf2hfcicd0wGcuNTFBslL8v3EpiAegE0uzWha7ZlF0f-fyShf-wOHo5Cwdt1JoeRUpRbxaSp3ETDrtE3baVO3iB7yM-SbxD8lE6SDYIP1iTdaDLLQbWqJHYB0U7YJz";
 const TERMO_IMG = "https://lh3.googleusercontent.com/aida-public/AB6AXuCEBO-lp67VOYs_LLI8wwdZltPKXQ773PKYPFVHKXUx8cbSkbLY19CiyV8oy24NE_IAc9KPgA--hJzvqoa_JqjoJYzYN98udpovZChTHBLrn868alAfC00pcf5fWBW6rS-jITzS519QblGJS71YEp1fC8AEog7LO6KLiN_wwSOnUY44pnzZtNuTT0-KyH1wJO4qnJ0_LuClXBdSWbiOC0eq3JsrXnIs2eKv32rcpleboXkO_w0g9DMcZnYpTZzeI0UsEf0fVVU-oJmJ";
-const TAZA_IMG = tazaMockup;
-const TOTE_IMG = "https://lh3.googleusercontent.com/aida-public/AB6AXuBqXJ2yomWs7KFK9QcW_vIGziEAcq1UCqZJF6dV8KQX65cXW0bWSzCdpFMYzK2eeBS5OPC64OjYVzFRMe_72TVhLWMDpF61iwDrgX29KCyhJ-UerFgu_d_tyASTJV3sV1-f0vo9I7BoqoLc64HU3Ve74cNY48QNOpnUgOTEWd8ohMpRHh3d24RN1YNB2v-";
 const HERO_MERCH_IMG = "https://lh3.googleusercontent.com/aida-public/AB6AXuBObNiMbqRk9PlFlX7EPzxqXypBHduHgME1kCNqUU0iE2mkBIm3v6tIy1GN8Y2WWbRgSv2JBYvxwlXsCgC4NA4yJFPFhsK-ItbMFYyd65kOu67MKm5-dAd3K5WWuyZe-lEWklNocibyUq6Ym3_rPoUYSTkmt6TLmDtf-AJK84GsrYqLNsOMec6S-_ghXyTq4o0b2SleJ9PDQN4Ig5rfQqHg09sH79W49jAHfhlTlPnQbX2GRwtOMb-vkkEeNMuwvzGduqsXuhvstWp_";
 
 const categories = ["Todos", "Ropa", "Accesorios", "Tazas/Termos"];
 
 const products = [
-  { id: 1, name: "Polos Corporativos Premium", category: "Ropa", badge: "Destacado", badgeColor: "bg-primary-container text-on-primary-container", img: POLO_IMG, desc: "Algodón Pima 100% con bordado de alta precisión. La elección ideal para uniformes ejecutivos.", featured: true },
-  { id: 2, name: "Termos de Acero", category: "Tazas/Termos", price: "Desde $25", img: TERMO_IMG, desc: "Acero quirúrgico con doble pared de vacío. Mantiene 24h frío.", featured: false },
-  { id: 3, name: "Taza Personalizada", category: "Tazas/Termos", price: "Desde $12", img: TAZA_IMG, desc: "Cerámica de alta densidad con acabado brillante. Apta para microondas.", featured: false },
-  { id: 4, name: "Tote Bags de Lona", category: "Accesorios", badges: ["Nuevo", "Eco-friendly"], img: TOTE_IMG, desc: "Lona ultra-resistente de 12oz. Impresión ecológica a base de agua que no se cuartea.", featured: true, reverse: true },
+  { id: 1, name: "Camisas Tipo Polo", category: "Ropa", badge: "Best Seller", badgeColor: "bg-primary-container text-on-primary-container", img: POLO_IMG, desc: "Disponibles en múltiples colores con bordado o DTF de alta precisión. Ideales para uniformes ejecutivos.", featured: true },
+  { id: 2, name: "Uniformes Corporativos", category: "Ropa", badge: "Destacado", badgeColor: "bg-secondary-container text-on-secondary-container", img: caballeroVest, desc: "Uniformes completos personalizados para tu empresa, desde chalecos hasta trajes corporativos.", featured: true, reverse: true },
+  { id: 3, name: "T-shirts / Playeras", category: "Ropa", img: TSHIRT_IMG, desc: "100% algodón con impresión digital o vinil textil. Perfectas para eventos y promociones.", featured: false },
+  { id: 4, name: "Camisas Manga Larga", category: "Ropa", img: TSHIRT_IMG, desc: "Tela de alta calidad para clima frío. Personalización en pecho, manga y espalda.", featured: false },
+  { id: 5, name: "Uniformes Deportivos", category: "Ropa", img: UNIFORME_IMG, desc: "Tela deportiva transpirable con sublimación full-print. Para equipos y academias.", featured: false },
+  { id: 6, name: "Termos", category: "Tazas/Termos", price: "Desde $25", img: TERMO_IMG, desc: "Acero quirúrgico con doble pared de vacío. Mantiene temperatura 24h.", featured: false },
+  { id: 7, name: "Tazas Personalizadas", category: "Tazas/Termos", price: "Desde $12", img: tazaMockup, desc: "Cerámica de alta densidad con tu logo. Acabado brillante, apta para microondas.", featured: false },
+  { id: 8, name: "Vasos", category: "Tazas/Termos", price: "Desde $10", img: tazaMockup, desc: "Vasos personalizados para eventos, ferias y regalos corporativos.", featured: false },
+  { id: 9, name: "Gorras", category: "Accesorios", img: null, icon: "child_hat", desc: "Gorras estructuradas y no estructuradas con bordado 3D o impresión frontal.", featured: false },
 ];
 
 export default function Catalog() {
@@ -93,7 +99,7 @@ export default function Catalog() {
               return (
                 <div key={product.id} className={`md:col-span-8 group relative bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden flex ${product.reverse ? "flex-col-reverse md:flex-row" : "flex-col md:flex-row"} h-full`}>
                   <div className={`${product.reverse ? "md:w-1/2 order-last md:order-last" : "md:w-1/2"} overflow-hidden`}>
-                    <img src={product.img} alt={product.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                    <img src={product.img ?? ""} alt={product.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
                   </div>
                   <div className={`${product.reverse ? "md:w-1/2 order-first md:order-first" : "md:w-1/2"} p-8 flex flex-col justify-between`}>
                     <div>
@@ -101,12 +107,6 @@ export default function Catalog() {
                         <span className={`inline-block px-3 py-1 ${product.badgeColor} rounded-full text-xs font-bold mb-4`} style={{ fontFamily: "Space Grotesk, sans-serif" }}>
                           {product.badge}
                         </span>
-                      )}
-                      {product.badges && (
-                        <div className="flex gap-2 mb-4">
-                          <span className="inline-block px-3 py-1 bg-secondary-container text-on-secondary-container rounded-full text-xs font-bold" style={{ fontFamily: "Space Grotesk, sans-serif" }}>Nuevo</span>
-                          <span className="inline-block px-3 py-1 bg-secondary text-on-secondary rounded-full text-xs font-bold" style={{ fontFamily: "Space Grotesk, sans-serif" }}>Eco-friendly</span>
-                        </div>
                       )}
                       <h3 className="text-2xl font-bold text-on-surface mb-3">{product.name}</h3>
                       <p className="text-on-surface-variant mb-6">{product.desc}</p>
@@ -126,8 +126,11 @@ export default function Catalog() {
             }
             return (
               <div key={product.id} className="md:col-span-4 group relative bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden">
-                <div className="aspect-[4/5] overflow-hidden">
-                  <img src={product.img} alt={product.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                <div className="aspect-[4/5] overflow-hidden bg-surface-container flex items-center justify-center">
+                  {product.img
+                    ? <img src={product.img} alt={product.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                    : <span className="material-symbols-outlined text-primary text-[64px]">{(product as any).icon}</span>
+                  }
                 </div>
                 <div className="p-6 space-y-4">
                   <div className="flex justify-between items-start">
