@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import tazaMockup from "../assets/taza-mockup.jpeg";
+import caballeroVest from "../assets/caballero-vest.jpeg";
 
 const HERO_IMG = "https://lh3.googleusercontent.com/aida-public/AB6AXuAerl7IJ6epG3EYJKHdgX2UVdXd3KICrDz6NasvoPxttQjMZ_5tcNxR3uxFJPnd91pN5uLUpxla5jB31WLMWdn8gzYJLOj6VOJNSrmClq3yYnj3Hi6lMkCHK6f-RMAu99xjvNQVfLyFK1SzmgQ3ZPP7BEZu7RVfZKlSziH3wmjip9DnJ7c6m6RCD5tbQGOQc3T5XNzk_LW6x-mC5xADCUzyxDvUImXf6e6nAm54ZWnQvEgyon1XBZpWpUpMK-DC2k3_gd0H0nQb9hUY";
 const PRINT_IMG = "https://lh3.googleusercontent.com/aida-public/AB6AXuD9ASLl6MuNVLB2iebeO-0tS2ZxyA6MjbKqPbbmPSXhBReMlJCTFz1cO4ijcJi6M8iCF-yEr36cGiqggDRWNRdW8Dl5XySRC_Rx78RXGXiYOn0NlBvbHV30X_FVw6YimkcRItu8HV5Hrqhgi-pQ3yuXqCYQH1THM79LuQOsPvFaC00si-XJCFR7HFVgzMfV";
@@ -45,13 +47,8 @@ export default function Home() {
       <section className="py-12 bg-surface-container-lowest border-y border-outline-variant/30">
         <div className="px-4 md:px-margin-desktop max-w-7xl mx-auto flex flex-col items-center gap-6">
           <p className="text-xs font-bold text-on-surface-variant/60 uppercase tracking-widest">Confían en nosotros</p>
-          <div className="flex grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-500">
-            <div className="flex items-center gap-3">
-              <span className="material-symbols-outlined text-secondary text-[40px]">local_shipping</span>
-              <span className="text-2xl font-bold tracking-tight text-on-surface">
-                Transportes <span className="text-secondary">Caballero</span>
-              </span>
-            </div>
+          <div className="hover:opacity-100 opacity-80 transition-all duration-500">
+            <img src={caballeroVest} alt="Transportes Caballero" className="h-40 w-auto object-contain rounded-lg" />
           </div>
         </div>
       </section>
@@ -89,13 +86,16 @@ export default function Home() {
               </div>
             ))}
             {[
-              { icon: "child_hat", name: "Gorras" },
-              { icon: "coffee", name: "Tazas" },
-              { icon: "water_bottle", name: "Termos" },
-            ].map(({ icon, name }) => (
+              { icon: "child_hat", name: "Gorras", img: null },
+              { icon: "coffee", name: "Tazas", img: tazaMockup },
+              { icon: "water_bottle", name: "Termos", img: null },
+            ].map(({ icon, name, img }) => (
               <div key={name} className="group flex flex-col bg-surface-container-lowest rounded-xl pop-shadow border border-outline-variant overflow-hidden hover:-translate-y-1 transition-all duration-300">
-                <div className="aspect-square p-6 flex items-center justify-center">
-                  <span className="material-symbols-outlined text-primary text-[48px]">{icon}</span>
+                <div className="aspect-square overflow-hidden flex items-center justify-center bg-surface-container">
+                  {img
+                    ? <img src={img} alt={name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                    : <span className="material-symbols-outlined text-primary text-[48px]">{icon}</span>
+                  }
                 </div>
                 <div className="p-4 text-center">
                   <h3 className="text-sm font-bold">{name}</h3>

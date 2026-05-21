@@ -1,12 +1,13 @@
 import { Link } from "react-router-dom";
+import logo from "../assets/logo.jpeg";
 
 export default function Footer() {
   return (
     <footer className="bg-surface-container border-t border-outline-variant">
       <div className="flex flex-col md:flex-row justify-between items-center w-full px-4 md:px-margin-desktop py-12 max-w-7xl mx-auto gap-8">
         <div className="flex flex-col items-center md:items-start gap-2">
-          <Link to="/" className="text-2xl font-extrabold text-primary" style={{ fontFamily: "Epilogue, sans-serif" }}>
-            Pop Ideas
+          <Link to="/">
+            <img src={logo} alt="Pop Ideas" className="h-12 w-auto" />
           </Link>
           <p className="text-xs text-on-surface-variant">© 2024 Pop Ideas. Modern Craftsmanship for Custom Merch.</p>
         </div>

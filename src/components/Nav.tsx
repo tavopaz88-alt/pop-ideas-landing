@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+import logo from "../assets/logo.jpeg";
 
 const links = [
   { label: "Home", to: "/" },
@@ -27,8 +28,8 @@ export default function Nav() {
               >
                 <span className="material-symbols-outlined">menu</span>
               </button>
-              <Link to="/" className="text-2xl font-extrabold text-primary" style={{ fontFamily: "Epilogue, sans-serif" }}>
-                Pop Ideas
+              <Link to="/">
+                <img src={logo} alt="Pop Ideas" className="h-12 w-auto" />
               </Link>
             </div>
             <nav className="hidden md:flex gap-8 items-center">
@@ -81,9 +82,7 @@ export default function Nav() {
         />
         <div className="relative w-4/5 max-w-xs h-full bg-surface-container-lowest shadow-xl p-6 flex flex-col">
           <div className="flex justify-between items-center mb-10">
-            <span className="text-2xl font-extrabold text-primary" style={{ fontFamily: "Epilogue, sans-serif" }}>
-              Pop Ideas
-            </span>
+            <img src={logo} alt="Pop Ideas" className="h-10 w-auto" />
             <button className="p-2 text-on-surface-variant" onClick={() => setDrawerOpen(false)}>
               <span className="material-symbols-outlined">close</span>
             </button>
