@@ -1,19 +1,8 @@
 import { useState, useRef } from "react";
+import { useLang } from "../contexts/LanguageContext";
+import { tr } from "../i18n/translations";
 
 const MERCH_IMG = "https://lh3.googleusercontent.com/aida-public/AB6AXuAm5VSJpBE-Z7TQyupW81H_xYi86M4qjuh121OsQCq4rCmskQbjq_JhHgIHs4tzTcokD6VzacRPx3N6GVCaBsK8OCPDizjMIGkSg4CHp2sBFos8m7tStfwFL5d7jprkXvK75BFgWiZp401sOpPB6Xm_4foiq0PpHENWoNlPwEwmTaaYm1agK01eZXwFM4trkDLuuins3GnKCA5-VmrvRTQpbh9iaJFxB-vfIQbdgSZreqCuvGfGCV0zRdrk-VOd7jZO1mm7TlIwQCbv";
-
-const PRODUCTS = [
-  { value: "polo", label: "Polo / Camiseta tipo polo" },
-  { value: "tshirt", label: "T-shirt / Playera" },
-  { value: "manga-larga", label: "Camisa manga larga" },
-  { value: "gorra", label: "Gorra" },
-  { value: "uniforme-deportivo", label: "Uniforme deportivo" },
-  { value: "uniforme-corporativo", label: "Uniforme corporativo" },
-  { value: "taza", label: "Taza" },
-  { value: "termo", label: "Termo" },
-  { value: "vaso", label: "Vaso" },
-  { value: "otro", label: "Otro" },
-];
 
 const SIZES = ["XS", "S", "M", "L", "XL", "XXL"];
 
@@ -30,6 +19,9 @@ type FormState = {
 };
 
 export default function Quote() {
+  const { lang } = useLang();
+  const t = tr[lang].quote;
+
   const [form, setForm] = useState<FormState>({
     nombre: "", empresa: "", whatsapp: "", producto: "", tallas: [],
     color: "", cantidad: "", fecha: "", comentarios: "",
@@ -76,14 +68,14 @@ export default function Quote() {
         <div className="w-20 h-20 rounded-full bg-secondary-container flex items-center justify-center">
           <span className="material-symbols-outlined text-secondary text-[48px]" style={{ fontVariationSettings: "'FILL' 1" }}>check_circle</span>
         </div>
-        <h1 className="text-4xl font-bold">¡Solicitud enviada!</h1>
+        <h1 className="text-4xl font-bold">{t.successTitle}</h1>
         <p className="text-on-surface-variant text-lg max-w-md">
-          Gracias por tu interés. Nuestro equipo se comunicará contigo por WhatsApp en menos de 24 horas.
+          {t.successSubtitle}
         </p>
         <a href="https://wa.me/19198641322" target="_blank" rel="noopener noreferrer"
           className="flex items-center gap-2 bg-[#25D366] text-white px-8 py-4 rounded-lg font-bold hover:opacity-90 transition-opacity">
           <span className="material-symbols-outlined">chat</span>
-          Chatear ahora por WhatsApp
+          {t.successWhatsapp}
         </a>
       </main>
     );
@@ -95,21 +87,16 @@ export default function Quote() {
         {/* Info panel */}
         <div className="lg:col-span-5 space-y-8">
           <span className="inline-block bg-secondary-container text-on-secondary-container px-4 py-1 rounded-full font-bold text-xs uppercase tracking-widest" style={{ fontFamily: "Space Grotesk, sans-serif" }}>
-            Cotización Personalizada
+            {t.badge}
           </span>
           <h1 className="text-4xl lg:text-5xl font-extrabold text-on-surface">
-            Impulsa tu marca con productos que <span className="text-primary">hacen pop</span>.
+            {t.title} <span className="text-primary">{t.highlight}</span>
           </h1>
           <p className="text-lg text-on-surface-variant">
-            Completa el formulario para recibir un presupuesto detallado. Nuestro equipo te contactará en menos de 24 horas.
+            {t.subtitle}
           </p>
           <div className="bg-surface-container p-6 rounded-xl space-y-4">
-            {[
-              { icon: "verified", label: "Calidad premium garantizada" },
-              { icon: "schedule", label: "Tiempo de entrega: 14 días hábiles" },
-              { icon: "local_shipping", label: "Envíos a todo el país" },
-              { icon: "groups", label: "Pedido mínimo: 12-15 piezas" },
-            ].map(({ icon, label }) => (
+            {t.infoItems.map(({ icon, label }) => (
               <div key={icon} className="flex items-center gap-4">
                 <span className="material-symbols-outlined text-secondary" style={{ fontVariationSettings: "'FILL' 1" }}>{icon}</span>
                 <p className="font-medium">{label}</p>
@@ -126,46 +113,46 @@ export default function Quote() {
           <form className="space-y-10" onSubmit={handleSubmit}>
             {/* Customer info */}
             <div className="space-y-6">
-              <h2 className="text-2xl font-bold border-b border-outline-variant pb-2">Información del Cliente</h2>
+              <h2 className="text-2xl font-bold border-b border-outline-variant pb-2">{t.sec_customer}</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="flex flex-col gap-2">
-                  <label className="text-xs font-bold text-on-surface-variant uppercase tracking-wider" style={{ fontFamily: "Space Grotesk, sans-serif" }}>Nombre Completo *</label>
+                  <label className="text-xs font-bold text-on-surface-variant uppercase tracking-wider" style={{ fontFamily: "Space Grotesk, sans-serif" }}>{t.f_name}</label>
                   <input name="nombre" value={form.nombre} onChange={handleChange} required
                     className="bg-white border border-outline rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-primary-fixed focus:border-primary transition-all"
-                    placeholder="Ej. Juan Pérez" type="text" />
+                    placeholder={t.f_namePh} type="text" />
                 </div>
                 <div className="flex flex-col gap-2">
-                  <label className="text-xs font-bold text-on-surface-variant uppercase tracking-wider" style={{ fontFamily: "Space Grotesk, sans-serif" }}>Empresa *</label>
+                  <label className="text-xs font-bold text-on-surface-variant uppercase tracking-wider" style={{ fontFamily: "Space Grotesk, sans-serif" }}>{t.f_company}</label>
                   <input name="empresa" value={form.empresa} onChange={handleChange} required
                     className="bg-white border border-outline rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-primary-fixed focus:border-primary transition-all"
-                    placeholder="Nombre de tu negocio" type="text" />
+                    placeholder={t.f_companyPh} type="text" />
                 </div>
               </div>
               <div className="flex flex-col gap-2">
-                <label className="text-xs font-bold text-on-surface-variant uppercase tracking-wider" style={{ fontFamily: "Space Grotesk, sans-serif" }}>WhatsApp *</label>
+                <label className="text-xs font-bold text-on-surface-variant uppercase tracking-wider" style={{ fontFamily: "Space Grotesk, sans-serif" }}>{t.f_whatsapp}</label>
                 <div className="relative">
                   <span className="absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant material-symbols-outlined">call</span>
                   <input name="whatsapp" value={form.whatsapp} onChange={handleChange} required
                     className="w-full bg-white border border-outline rounded-lg p-3 pl-12 focus:outline-none focus:ring-2 focus:ring-primary-fixed focus:border-primary transition-all"
-                    placeholder="+1 000 000 0000" type="tel" />
+                    placeholder={t.f_whatsappPh} type="tel" />
                 </div>
               </div>
             </div>
 
             {/* Order details */}
             <div className="space-y-6">
-              <h2 className="text-2xl font-bold border-b border-outline-variant pb-2">Detalles del Pedido</h2>
+              <h2 className="text-2xl font-bold border-b border-outline-variant pb-2">{t.sec_order}</h2>
               <div className="flex flex-col gap-2">
-                <label className="text-xs font-bold text-on-surface-variant uppercase tracking-wider" style={{ fontFamily: "Space Grotesk, sans-serif" }}>Producto deseado *</label>
+                <label className="text-xs font-bold text-on-surface-variant uppercase tracking-wider" style={{ fontFamily: "Space Grotesk, sans-serif" }}>{t.f_product}</label>
                 <select name="producto" value={form.producto} onChange={handleChange} required
                   className="bg-white border border-outline rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-primary-fixed focus:border-primary transition-all appearance-none cursor-pointer">
-                  <option value="" disabled>Selecciona un producto</option>
-                  {PRODUCTS.map(p => <option key={p.value} value={p.value}>{p.label}</option>)}
+                  <option value="" disabled>{t.f_productDefault}</option>
+                  {t.products.map(p => <option key={p.value} value={p.value}>{p.label}</option>)}
                 </select>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="flex flex-col gap-2">
-                  <label className="text-xs font-bold text-on-surface-variant uppercase tracking-wider" style={{ fontFamily: "Space Grotesk, sans-serif" }}>Tallas</label>
+                  <label className="text-xs font-bold text-on-surface-variant uppercase tracking-wider" style={{ fontFamily: "Space Grotesk, sans-serif" }}>{t.f_sizes}</label>
                   <div className="flex flex-wrap gap-3 pt-2">
                     {SIZES.map(size => (
                       <label key={size} className="flex items-center gap-2 cursor-pointer group">
@@ -177,21 +164,21 @@ export default function Quote() {
                   </div>
                 </div>
                 <div className="flex flex-col gap-2">
-                  <label className="text-xs font-bold text-on-surface-variant uppercase tracking-wider" style={{ fontFamily: "Space Grotesk, sans-serif" }}>Color de prenda</label>
+                  <label className="text-xs font-bold text-on-surface-variant uppercase tracking-wider" style={{ fontFamily: "Space Grotesk, sans-serif" }}>{t.f_color}</label>
                   <input name="color" value={form.color} onChange={handleChange}
                     className="bg-white border border-outline rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-primary-fixed focus:border-primary transition-all"
-                    placeholder="Ej. Azul Marino o #001b3a" type="text" />
+                    placeholder={t.f_colorPh} type="text" />
                 </div>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="flex flex-col gap-2">
-                  <label className="text-xs font-bold text-on-surface-variant uppercase tracking-wider" style={{ fontFamily: "Space Grotesk, sans-serif" }}>Cantidad (Mín. 12) *</label>
+                  <label className="text-xs font-bold text-on-surface-variant uppercase tracking-wider" style={{ fontFamily: "Space Grotesk, sans-serif" }}>{t.f_quantity}</label>
                   <input name="cantidad" value={form.cantidad} onChange={handleChange} required min="12" type="number"
                     className="bg-white border border-outline rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-primary-fixed focus:border-primary transition-all"
-                    placeholder="Min. 12" />
+                    placeholder={t.f_quantityPh} />
                 </div>
                 <div className="flex flex-col gap-2">
-                  <label className="text-xs font-bold text-on-surface-variant uppercase tracking-wider" style={{ fontFamily: "Space Grotesk, sans-serif" }}>Fecha requerida</label>
+                  <label className="text-xs font-bold text-on-surface-variant uppercase tracking-wider" style={{ fontFamily: "Space Grotesk, sans-serif" }}>{t.f_date}</label>
                   <input name="fecha" value={form.fecha} onChange={handleChange} type="date"
                     className="bg-white border border-outline rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-primary-fixed focus:border-primary transition-all" />
                 </div>
@@ -200,9 +187,9 @@ export default function Quote() {
 
             {/* Assets */}
             <div className="space-y-6">
-              <h2 className="text-2xl font-bold border-b border-outline-variant pb-2">Archivos y Comentarios</h2>
+              <h2 className="text-2xl font-bold border-b border-outline-variant pb-2">{t.sec_assets}</h2>
               <div className="flex flex-col gap-2">
-                <label className="text-xs font-bold text-on-surface-variant uppercase tracking-wider" style={{ fontFamily: "Space Grotesk, sans-serif" }}>Diseño del Logo</label>
+                <label className="text-xs font-bold text-on-surface-variant uppercase tracking-wider" style={{ fontFamily: "Space Grotesk, sans-serif" }}>{t.f_logoLabel}</label>
                 <div
                   onClick={() => fileInputRef.current?.click()}
                   className={`border-2 border-dashed rounded-xl p-8 flex flex-col items-center justify-center gap-3 cursor-pointer transition-colors ${
@@ -213,16 +200,16 @@ export default function Quote() {
                     className="hidden" onChange={e => setLogoFile(e.target.files?.[0] ?? null)} />
                   <span className={`material-symbols-outlined text-[48px] ${logoFile ? "text-secondary" : "text-primary"}`}>upload_file</span>
                   <div className="text-center">
-                    <p className="font-bold text-on-surface">{logoFile ? logoFile.name : "Adjuntar Logo (PNG, PDF, JPG)"}</p>
-                    <p className="text-sm text-on-surface-variant">Arrastra o haz clic para subir · PNG, PDF, JPG, AI, EPS</p>
+                    <p className="font-bold text-on-surface">{logoFile ? logoFile.name : t.f_logoDefault}</p>
+                    <p className="text-sm text-on-surface-variant">{t.f_logoHint}</p>
                   </div>
                 </div>
               </div>
               <div className="flex flex-col gap-2">
-                <label className="text-xs font-bold text-on-surface-variant uppercase tracking-wider" style={{ fontFamily: "Space Grotesk, sans-serif" }}>Comentarios adicionales</label>
+                <label className="text-xs font-bold text-on-surface-variant uppercase tracking-wider" style={{ fontFamily: "Space Grotesk, sans-serif" }}>{t.f_comments}</label>
                 <textarea name="comentarios" value={form.comentarios} onChange={handleChange} rows={3}
                   className="bg-white border border-outline rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-primary-fixed focus:border-primary transition-all resize-none"
-                  placeholder="Cuéntanos más sobre tu proyecto..." />
+                  placeholder={t.f_commentsPh} />
               </div>
             </div>
 
@@ -231,12 +218,12 @@ export default function Quote() {
               <div className="flex items-center gap-3 p-4 bg-secondary-container/10 border border-secondary/20 rounded-lg">
                 <span className="material-symbols-outlined text-secondary">info</span>
                 <p className="text-sm text-on-secondary-container">
-                  Tiempo de entrega: <span className="font-bold">14 días hábiles</span> una vez aprobado el diseño.
+                  {t.deliveryNote1} <span className="font-bold">{t.deliveryNote2}</span> {t.deliveryNote3}
                 </p>
               </div>
               {status === "error" && (
                 <p className="text-sm text-error font-medium text-center">
-                  Hubo un error al enviar. Por favor intenta de nuevo o contáctanos por WhatsApp.
+                  {t.error}
                 </p>
               )}
               <button type="submit" disabled={status === "loading"}
@@ -244,9 +231,9 @@ export default function Quote() {
                 {status === "loading" ? (
                   <>
                     <span className="material-symbols-outlined animate-spin">sync</span>
-                    Enviando...
+                    {t.submitting}
                   </>
-                ) : "Enviar Solicitud de Cotización"}
+                ) : t.submit}
               </button>
             </div>
           </form>

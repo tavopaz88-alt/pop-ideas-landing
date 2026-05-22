@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import tazaMockup from "../assets/taza-mockup.jpeg";
 import caballeroVest from "../assets/caballero-vest.jpeg";
+import { useLang } from "../contexts/LanguageContext";
+import { tr } from "../i18n/translations";
 
 const POLO_IMG = "https://lh3.googleusercontent.com/aida-public/AB6AXuAjJEWglZFLTbKWRqRkr_fajlGPQlhsNSQZPda-pMUAD-KcUEHL3GBhAxT5mDfjoiiwEGlYWnIXuDL56Xxxowijlxt3NE5h9iyVKVfftDaGMIAuIdQXN4C458fD3AVxapXseE92QwWTMsfXXY_lLVkrgLTyxLQ7vSHLb3AcYHd5pQV707NFGDtkoyVqdZa_m3OUjJnVE_UlyPuuyGwHZcO9Fl27YNvOHq2QQTTJn72gu7w7HkB1VnQV1ze-NTZm1z4JjEPdMzrXDV9X";
 const DTF_IMG = "https://images.unsplash.com/photo-1503341733017-1901578f9f1e?auto=format&fit=crop&w=800&q=80";
@@ -11,6 +13,9 @@ const UNIFORME_IMG = "https://lh3.googleusercontent.com/aida-public/AB6AXuDVBB8-
 const TERMO_IMG = "https://lh3.googleusercontent.com/aida-public/AB6AXuCEBO-lp67VOYs_LLI8wwdZltPKXQ773PKYPFVHKXUx8cbSkbLY19CiyV8oy24NE_IAc9KPgA--hJzvqoa_JqjoJYzYN98udpovZChTHBLrn868alAfC00pcf5fWBW6rS-jITzS519QblGJS71YEp1fC8AEog7LO6KLiN_wwSOnUY44pnzZtNuTT0-KyH1wJO4qnJ0_LuClXBdSWbiOC0eq3JsrXnIs2eKv32rcpleboXkO_w0g9DMcZnYpTZzeI0UsEf0fVVU-oJmJ";
 
 export default function Home() {
+  const { lang } = useLang();
+  const t = tr[lang].home;
+
   return (
     <main>
       {/* Hero */}
@@ -26,21 +31,21 @@ export default function Home() {
             <div className="inline-flex items-center gap-1.5 bg-secondary-container text-on-secondary-container px-4 py-1.5 rounded-full w-fit">
               <span className="material-symbols-outlined text-[18px]">verified</span>
               <span className="text-xs font-bold uppercase tracking-wider" style={{ fontFamily: "Space Grotesk, sans-serif" }}>
-                Artesanía Moderna
+                {t.heroBadge}
               </span>
             </div>
             <h1 className="text-5xl md:text-6xl font-extrabold leading-tight tracking-tight">
-              Calidad y Buen Trabajo en cada <span className="text-primary">Detalle</span>
+              {t.heroTitle} <span className="text-primary">{t.heroHighlight}</span>
             </h1>
             <p className="text-lg text-on-surface-variant max-w-md">
-              Elevamos tu marca con productos personalizados de alta gama, desde textiles hasta accesorios corporativos con acabados de precisión.
+              {t.heroSubtitle}
             </p>
             <div className="flex flex-wrap gap-4 pt-2">
               <Link to="/quote" className="bg-primary text-on-primary text-sm font-bold px-8 py-4 rounded-lg shadow-lg hover:-translate-y-0.5 transition-all">
-                Cotizar ahora
+                {t.heroCta}
               </Link>
               <Link to="/catalog" className="bg-surface-container border border-outline-variant text-on-surface text-sm font-bold px-8 py-4 rounded-lg hover:bg-surface-container-high transition-all">
-                Ver Galería
+                {t.heroCta2}
               </Link>
             </div>
           </div>
@@ -54,11 +59,11 @@ export default function Home() {
               </div>
               {/* Floating badge top-left */}
               <div className="absolute -top-4 -left-4 bg-secondary-container text-on-secondary-container px-4 py-2 rounded-xl shadow-lg -rotate-3 font-bold text-sm" style={{ fontFamily: "Space Grotesk, sans-serif" }}>
-                ✦ Premium
+                {t.heroBadgePremium}
               </div>
               {/* Floating badge bottom-right */}
               <div className="absolute -bottom-4 -right-4 bg-primary text-on-primary px-4 py-2 rounded-xl shadow-lg rotate-2 text-xs font-bold" style={{ fontFamily: "Space Grotesk, sans-serif" }}>
-                Entrega 14 días
+                {t.heroBadgeDelivery}
               </div>
             </div>
 
@@ -74,13 +79,13 @@ export default function Home() {
       {/* Clients */}
       <section className="py-12 bg-surface-container-lowest border-y border-outline-variant/30">
         <div className="px-4 md:px-margin-desktop max-w-7xl mx-auto flex flex-col items-center gap-6">
-          <p className="text-xs font-bold text-on-surface-variant/60 uppercase tracking-widest">Confían en nosotros</p>
+          <p className="text-xs font-bold text-on-surface-variant/60 uppercase tracking-widest">{t.clientsLabel}</p>
           <div className="flex items-center gap-4 px-8 py-4 rounded-2xl bg-surface-container-low border border-outline-variant hover:border-primary/30 transition-all duration-300">
             <div className="w-12 h-12 rounded-xl bg-secondary-container flex items-center justify-center shrink-0">
               <span className="material-symbols-outlined text-secondary text-[28px]">local_shipping</span>
             </div>
             <div>
-              <p className="text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-0.5" style={{ fontFamily: "Space Grotesk, sans-serif" }}>Cliente verificado</p>
+              <p className="text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-0.5" style={{ fontFamily: "Space Grotesk, sans-serif" }}>{t.clientsBadge}</p>
               <p className="text-xl font-extrabold text-on-surface" style={{ fontFamily: "Epilogue, sans-serif" }}>Transportes Caballero</p>
             </div>
           </div>
@@ -92,21 +97,21 @@ export default function Home() {
         <div className="px-4 md:px-margin-desktop max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-end gap-6 mb-12">
             <div className="flex flex-col gap-2">
-              <h2 className="text-4xl font-bold">Catálogo Premium</h2>
-              <p className="text-on-surface-variant">Descubre nuestra selección de productos listos para personalizar.</p>
+              <h2 className="text-4xl font-bold">{t.productsTitle}</h2>
+              <p className="text-on-surface-variant">{t.productsSubtitle}</p>
             </div>
             <div className="flex gap-2">
-              <span className="bg-primary-fixed text-on-primary-fixed-variant px-4 py-1 rounded-full text-xs font-bold">Best Sellers</span>
-              <span className="bg-secondary-fixed text-on-secondary-fixed px-4 py-1 rounded-full text-xs font-bold">Novedades</span>
+              <span className="bg-primary-fixed text-on-primary-fixed-variant px-4 py-1 rounded-full text-xs font-bold">{t.productsBadge1}</span>
+              <span className="bg-secondary-fixed text-on-secondary-fixed px-4 py-1 rounded-full text-xs font-bold">{t.productsBadge2}</span>
             </div>
           </div>
 
           {/* Row 1: 3 large cards */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
             {[
-              { img: POLO_IMG, category: "Textil", name: "Camisas Polo" },
-              { img: TSHIRT_IMG, category: "Casual", name: "T-shirts / Playeras" },
-              { img: caballeroVest, category: "Corporativo", name: "Uniformes Corporativos" },
+              { img: POLO_IMG, category: t.cat_textile, name: t.prod_polo },
+              { img: TSHIRT_IMG, category: t.cat_casual, name: t.prod_tshirt },
+              { img: caballeroVest, category: t.cat_corporate, name: t.prod_corporate },
             ].map(({ img, category, name }) => (
               <Link to="/catalog" key={name} className="group flex flex-col bg-surface-container-lowest rounded-xl pop-shadow border border-outline-variant overflow-hidden hover:-translate-y-1 transition-all duration-300">
                 <div className="aspect-[4/3] bg-surface-container overflow-hidden">
@@ -126,9 +131,9 @@ export default function Home() {
           {/* Row 2: 3 medium cards */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
             {[
-              { img: TSHIRT_IMG, category: "Textil", name: "Camisas Manga Larga" },
-              { img: UNIFORME_IMG, category: "Deportivo", name: "Uniformes Deportivos" },
-              { img: TERMO_IMG, category: "Accesorios", name: "Termos" },
+              { img: TSHIRT_IMG, category: t.cat_textile, name: t.prod_longsleeve },
+              { img: UNIFORME_IMG, category: t.cat_sport, name: t.prod_sport },
+              { img: TERMO_IMG, category: t.cat_accessories, name: t.prod_thermos },
             ].map(({ img, category, name }) => (
               <Link to="/catalog" key={name} className="group flex flex-col bg-surface-container-lowest rounded-xl pop-shadow border border-outline-variant overflow-hidden hover:-translate-y-1 transition-all duration-300">
                 <div className="aspect-[4/3] bg-surface-container overflow-hidden">
@@ -148,9 +153,9 @@ export default function Home() {
           {/* Row 3: 3 small cards */}
           <div className="grid grid-cols-3 gap-6 mb-6">
             {[
-              { img: tazaMockup, icon: "coffee", name: "Tazas" },
-              { img: tazaMockup, icon: "local_drink", name: "Vasos" },
-              { img: null, icon: "child_hat", name: "Gorras" },
+              { img: tazaMockup, icon: "coffee", name: t.prod_mugs },
+              { img: tazaMockup, icon: "local_drink", name: t.prod_cups },
+              { img: null, icon: "child_hat", name: t.prod_caps },
             ].map(({ img, icon, name }) => (
               <Link to="/catalog" key={name} className="group flex flex-col bg-surface-container-lowest rounded-xl pop-shadow border border-outline-variant overflow-hidden hover:-translate-y-1 transition-all duration-300">
                 <div className="aspect-square bg-surface-container overflow-hidden flex items-center justify-center">
@@ -168,7 +173,7 @@ export default function Home() {
 
           <div className="text-center mt-8">
             <Link to="/catalog" className="inline-flex items-center gap-2 bg-primary text-on-primary px-8 py-3 rounded-lg font-bold text-sm hover:opacity-90 transition-opacity">
-              Ver catálogo completo <span className="material-symbols-outlined text-[18px]">arrow_forward</span>
+              {t.productsCta} <span className="material-symbols-outlined text-[18px]">arrow_forward</span>
             </Link>
           </div>
         </div>
@@ -178,8 +183,8 @@ export default function Home() {
       <section className="py-20 bg-surface-container-low overflow-hidden" id="servicios">
         <div className="px-4 md:px-margin-desktop max-w-7xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold mb-2">Técnicas de Personalización</h2>
-            <p className="text-on-surface-variant">Tecnología de punta para resultados vibrantes y duraderos en cada pedido.</p>
+            <h2 className="text-4xl font-bold mb-2">{t.servicesTitle}</h2>
+            <p className="text-on-surface-variant">{t.servicesSubtitle}</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
@@ -187,10 +192,10 @@ export default function Home() {
                 img: DTF_IMG,
                 icon: "print",
                 iconBg: "bg-primary",
-                badge: "Más popular",
+                badge: t.servicesBadge,
                 badgeCls: "bg-primary-container text-on-primary-container",
-                title: "DTF — Direct to Film",
-                desc: "Ideal para degradados y colores vibrantes sin límite de tonos. Alta resolución en cualquier tipo de tela."
+                title: t.dtfTitle,
+                desc: t.dtfDesc,
               },
               {
                 img: VINYL_IMG,
@@ -198,8 +203,8 @@ export default function Home() {
                 iconBg: "bg-secondary",
                 badge: null as null,
                 badgeCls: "",
-                title: "Vinil Textil",
-                desc: "Acabados mate o brillantes de alta resistencia. Perfecto para logos sólidos con larga durabilidad."
+                title: t.vinylTitle,
+                desc: t.vinylDesc,
               },
               {
                 img: DIGITAL_IMG,
@@ -207,8 +212,8 @@ export default function Home() {
                 iconBg: "bg-primary",
                 badge: null as null,
                 badgeCls: "",
-                title: "Impresión Digital",
-                desc: "Precisión fotográfica para tazas, termos y accesorios rígidos. Colores exactos a tu identidad de marca."
+                title: t.digitalTitle,
+                desc: t.digitalDesc,
               },
             ].map(({ img, icon, iconBg, badge, badgeCls, title, desc }) => (
               <div key={title} className="group rounded-2xl overflow-hidden border border-outline-variant shadow-md hover:shadow-xl transition-all duration-300 bg-white">
@@ -240,8 +245,8 @@ export default function Home() {
       <section className="py-20 bg-background" id="proceso">
         <div className="px-4 md:px-margin-desktop max-w-7xl mx-auto flex flex-col gap-12">
           <div className="text-center flex flex-col gap-2">
-            <h2 className="text-4xl font-bold">Proceso Comercial</h2>
-            <p className="text-on-surface-variant">Todo lo que necesitas saber para hacer tu pedido con nosotros.</p>
+            <h2 className="text-4xl font-bold">{t.processTitle}</h2>
+            <p className="text-on-surface-variant">{t.processSubtitle}</p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
             {[
@@ -249,36 +254,36 @@ export default function Home() {
                 icon: "forum",
                 iconBg: "bg-primary",
                 iconColor: "text-on-primary",
-                title: "Canales de pedido",
-                details: ["WhatsApp", "Teléfono", "Correo electrónico"]
+                title: t.proc_channels_title,
+                details: t.proc_channels_items,
               },
               {
                 icon: "schedule",
                 iconBg: "bg-secondary",
                 iconColor: "text-on-secondary",
-                title: "Tiempo de entrega",
-                details: ["14 días hábiles"]
+                title: t.proc_delivery_title,
+                details: t.proc_delivery_items,
               },
               {
                 icon: "inventory_2",
                 iconBg: "bg-primary",
                 iconColor: "text-on-primary",
-                title: "Pedido mínimo",
-                details: ["12–15 piezas"]
+                title: t.proc_minimum_title,
+                details: t.proc_minimum_items,
               },
               {
                 icon: "payments",
                 iconBg: "bg-secondary",
                 iconColor: "text-on-secondary",
-                title: "Formas de pago",
-                details: ["Efectivo", "Anticipo requerido", "PayPal", "Transferencia bancaria"]
+                title: t.proc_payment_title,
+                details: t.proc_payment_items,
               },
               {
                 icon: "local_shipping",
                 iconBg: "bg-primary",
                 iconColor: "text-on-primary",
-                title: "Envíos",
-                details: ["Todo el país"]
+                title: t.proc_shipping_title,
+                details: t.proc_shipping_items,
               },
             ].map(({ icon, iconBg, iconColor, title, details }) => (
               <div key={title} className="flex flex-col gap-4 p-6 rounded-2xl border border-outline-variant bg-surface-container-lowest hover:shadow-md transition-all">
@@ -308,14 +313,14 @@ export default function Home() {
           <div className="absolute top-0 right-0 w-96 h-96 bg-primary/20 rounded-full blur-[120px]" />
           <div className="absolute bottom-0 left-0 w-96 h-96 bg-secondary/20 rounded-full blur-[120px]" />
           <h2 className="text-5xl font-extrabold relative z-10">
-            ¿Listo para hacer <span className="text-primary-fixed">Pop</span> tu marca?
+            {t.ctaTitle} <span className="text-primary-fixed">{t.ctaHighlight}</span>
           </h2>
           <p className="text-lg text-surface-variant max-w-xl relative z-10">
-            Solicita una cotización personalizada hoy mismo y descubre por qué somos los favoritos de las empresas líderes.
+            {t.ctaSubtitle}
           </p>
           <div className="flex flex-wrap gap-4 justify-center relative z-10 mt-4">
             <Link to="/quote" className="bg-primary text-on-primary text-sm font-bold px-10 py-4 rounded-lg shadow-xl hover:scale-105 transition-transform">
-              Solicitar Cotización
+              {t.ctaBtn}
             </Link>
             <a href="tel:+19198641322" className="flex items-center gap-2 text-sm font-bold px-10 py-4 border border-outline text-inverse-on-surface rounded-lg hover:bg-white/5 transition-colors">
               <span className="material-symbols-outlined">call</span>
