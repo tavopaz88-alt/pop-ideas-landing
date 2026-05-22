@@ -3,7 +3,6 @@ import tazaMockup from "../assets/taza-mockup.jpeg";
 import caballeroVest from "../assets/caballero-vest.jpeg";
 import printImg from "../assets/taza-mockup.jpeg";
 
-const HERO_IMG = "https://lh3.googleusercontent.com/aida-public/AB6AXuAerl7IJ6epG3EYJKHdgX2UVdXd3KICrDz6NasvoPxttQjMZ_5tcNxR3uxFJPnd91pN5uLUpxla5jB31WLMWdn8gzYJLOj6VOJNSrmClq3yYnj3Hi6lMkCHK6f-RMAu99xjvNQVfLyFK1SzmgQ3ZPP7BEZu7RVfZKlSziH3wmjip9DnJ7c6m6RCD5tbQGOQc3T5XNzk_LW6x-mC5xADCUzyxDvUImXf6e6nAm54ZWnQvEgyon1XBZpWpUpMK-DC2k3_gd0H0nQb9hUY";
 const PRINT_IMG = printImg;
 const POLO_IMG = "https://lh3.googleusercontent.com/aida-public/AB6AXuAjJEWglZFLTbKWRqRkr_fajlGPQlhsNSQZPda-pMUAD-KcUEHL3GBhAxT5mDfjoiiwEGlYWnIXuDL56Xxxowijlxt3NE5h9iyVKVfftDaGMIAuIdQXN4C458fD3AVxapXseE92QwWTMsfXXY_lLVkrgLTyxLQ7vSHLb3AcYHd5pQV707NFGDtkoyVqdZa_m3OUjJnVE_UlyPuuyGwHZcO9Fl27YNvOHq2QQTTJn72gu7w7HkB1VnQV1ze-NTZm1z4JjEPdMzrXDV9X";
 const TSHIRT_IMG = "https://lh3.googleusercontent.com/aida-public/AB6AXuDU1BrBFocH4RnfAa0N2fFXtHtV6EVI8okv959xoCjLzb7YD7MxX2d6VFRVKkFHenqZVmXJRlUTEV8cNlj8RNTadiUixJ56cXl1PXYabWA-GJL4QbRuErnieZG95qtRAao-7YToXZChfCjrqgJ90CueNDVt7Tfsuqi0TOdMEfc0PMH9g34mpYftcfUkwO7voljw0Z4fcpmiuJqyaulkLIhd-IlDY6pY26yx3mzwrS50hKlp2IMXRiyyMEwje_5QIFI5OT41XTsPY0qQ";
@@ -14,12 +13,14 @@ export default function Home() {
   return (
     <main>
       {/* Hero */}
-      <section className="relative h-[80vh] flex items-center overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <img src={HERO_IMG} alt="Professional production facility" className="w-full h-full object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-r from-background via-background/80 to-transparent" />
-        </div>
-        <div className="relative z-10 w-full px-4 md:px-margin-desktop max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2">
+      <section className="relative overflow-hidden bg-surface-container-lowest py-16 md:py-24">
+        {/* Brand color blobs */}
+        <div className="absolute -top-20 -right-20 w-96 h-96 rounded-full opacity-20 blur-3xl pointer-events-none" style={{ background: "#9e3c5a" }} />
+        <div className="absolute top-1/2 -left-20 w-72 h-72 rounded-full opacity-20 blur-3xl pointer-events-none" style={{ background: "#d7ef46" }} />
+        <div className="absolute bottom-0 right-1/3 w-64 h-64 rounded-full opacity-15 blur-3xl pointer-events-none" style={{ background: "#ffb1c3" }} />
+
+        <div className="relative z-10 w-full px-4 md:px-margin-desktop max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+          {/* Text */}
           <div className="flex flex-col gap-6">
             <div className="inline-flex items-center gap-1.5 bg-secondary-container text-on-secondary-container px-4 py-1.5 rounded-full w-fit">
               <span className="material-symbols-outlined text-[18px]">verified</span>
@@ -27,19 +28,43 @@ export default function Home() {
                 Artesanía Moderna
               </span>
             </div>
-            <h1 className="text-5xl md:text-6xl font-extrabold leading-tight tracking-tight max-w-md">
+            <h1 className="text-5xl md:text-6xl font-extrabold leading-tight tracking-tight">
               Calidad y Buen Trabajo en cada <span className="text-primary">Detalle</span>
             </h1>
-            <p className="text-lg text-on-surface-variant max-w-sm">
+            <p className="text-lg text-on-surface-variant max-w-md">
               Elevamos tu marca con productos personalizados de alta gama, desde textiles hasta accesorios corporativos con acabados de precisión.
             </p>
-            <div className="flex flex-wrap gap-4 pt-4">
-              <Link to="/catalog" className="bg-primary text-on-primary text-sm font-bold px-8 py-4 rounded-lg shadow-lg hover:-translate-y-0.5 transition-all">
+            <div className="flex flex-wrap gap-4 pt-2">
+              <Link to="/quote" className="bg-primary text-on-primary text-sm font-bold px-8 py-4 rounded-lg shadow-lg hover:-translate-y-0.5 transition-all">
                 Cotizar ahora
               </Link>
-              <Link to="/catalog" className="bg-surface-container-lowest border border-outline-variant text-on-surface text-sm font-bold px-8 py-4 rounded-lg hover:bg-surface-container-low transition-all">
+              <Link to="/catalog" className="bg-surface-container border border-outline-variant text-on-surface text-sm font-bold px-8 py-4 rounded-lg hover:bg-surface-container-high transition-all">
                 Ver Galería
               </Link>
+            </div>
+          </div>
+
+          {/* Product showcase */}
+          <div className="relative flex items-center justify-center">
+            {/* Main product image */}
+            <div className="relative w-full max-w-sm mx-auto">
+              <div className="rounded-3xl overflow-hidden shadow-2xl rotate-1 hover:rotate-0 transition-transform duration-500 border-4 border-white">
+                <img src={tazaMockup} alt="Pop Ideas — Tazas personalizadas" className="w-full object-cover" />
+              </div>
+              {/* Floating badge top-left */}
+              <div className="absolute -top-4 -left-4 bg-secondary-container text-on-secondary-container px-4 py-2 rounded-xl shadow-lg -rotate-3 font-bold text-sm" style={{ fontFamily: "Space Grotesk, sans-serif" }}>
+                ✦ Premium
+              </div>
+              {/* Floating badge bottom-right */}
+              <div className="absolute -bottom-4 -right-4 bg-primary text-on-primary px-4 py-2 rounded-xl shadow-lg rotate-2 text-xs font-bold" style={{ fontFamily: "Space Grotesk, sans-serif" }}>
+                Entrega 14 días
+              </div>
+            </div>
+
+            {/* Side mini card */}
+            <div className="absolute -right-4 top-1/4 hidden lg:flex flex-col gap-2 bg-white rounded-2xl shadow-xl p-4 border border-outline-variant w-36 -rotate-1">
+              <img src={caballeroVest} alt="Uniformes" className="w-full rounded-lg object-contain h-20 bg-surface-container-low" />
+              <p className="text-xs font-bold text-on-surface text-center">Uniformes Corp.</p>
             </div>
           </div>
         </div>
