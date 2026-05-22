@@ -1,10 +1,11 @@
 import { Link } from "react-router-dom";
 import tazaMockup from "../assets/taza-mockup.jpeg";
 import caballeroVest from "../assets/caballero-vest.jpeg";
-import printImg from "../assets/taza-mockup.jpeg";
 
-const PRINT_IMG = printImg;
 const POLO_IMG = "https://lh3.googleusercontent.com/aida-public/AB6AXuAjJEWglZFLTbKWRqRkr_fajlGPQlhsNSQZPda-pMUAD-KcUEHL3GBhAxT5mDfjoiiwEGlYWnIXuDL56Xxxowijlxt3NE5h9iyVKVfftDaGMIAuIdQXN4C458fD3AVxapXseE92QwWTMsfXXY_lLVkrgLTyxLQ7vSHLb3AcYHd5pQV707NFGDtkoyVqdZa_m3OUjJnVE_UlyPuuyGwHZcO9Fl27YNvOHq2QQTTJn72gu7w7HkB1VnQV1ze-NTZm1z4JjEPdMzrXDV9X";
+const DTF_IMG = "https://images.unsplash.com/photo-1503341733017-1901578f9f1e?auto=format&fit=crop&w=800&q=80";
+const VINYL_IMG = "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=800&q=80";
+const DIGITAL_IMG = "https://images.unsplash.com/photo-1588345921523-c2dcdb7f1dcd?auto=format&fit=crop&w=800&q=80";
 const TSHIRT_IMG = "https://lh3.googleusercontent.com/aida-public/AB6AXuDU1BrBFocH4RnfAa0N2fFXtHtV6EVI8okv959xoCjLzb7YD7MxX2d6VFRVKkFHenqZVmXJRlUTEV8cNlj8RNTadiUixJ56cXl1PXYabWA-GJL4QbRuErnieZG95qtRAao-7YToXZChfCjrqgJ90CueNDVt7Tfsuqi0TOdMEfc0PMH9g34mpYftcfUkwO7voljw0Z4fcpmiuJqyaulkLIhd-IlDY6pY26yx3mzwrS50hKlp2IMXRiyyMEwje_5QIFI5OT41XTsPY0qQ";
 const UNIFORME_IMG = "https://lh3.googleusercontent.com/aida-public/AB6AXuDVBB8-uwI095fCROQA_Q3Svyt_5hPW3DRai3__orwTju4QEeIwpsaEW6-t8vu02IYNobWyF3Nmn_BgLTjDWWxXaZiTCijvb8n2HbsHQvsPyTgvunob7hTTk_wutfy9pIrY73Ymm6_WAFIjj0cf2hfcicd0wGcuNTFBslL8v3EpiAegE0uzWha7ZlF0f-fyShf-wOHo5Cwdt1JoeRUpRbxaSp3ETDrtE3baVO3iB7yM-SbxD8lE6SDYIP1iTdaDLLQbWqJHYB0U7YJz";
 const TERMO_IMG = "https://lh3.googleusercontent.com/aida-public/AB6AXuCEBO-lp67VOYs_LLI8wwdZltPKXQ773PKYPFVHKXUx8cbSkbLY19CiyV8oy24NE_IAc9KPgA--hJzvqoa_JqjoJYzYN98udpovZChTHBLrn868alAfC00pcf5fWBW6rS-jITzS519QblGJS71YEp1fC8AEog7LO6KLiN_wwSOnUY44pnzZtNuTT0-KyH1wJO4qnJ0_LuClXBdSWbiOC0eq3JsrXnIs2eKv32rcpleboXkO_w0g9DMcZnYpTZzeI0UsEf0fVVU-oJmJ";
@@ -176,59 +177,125 @@ export default function Home() {
       {/* Services */}
       <section className="py-20 bg-surface-container-low overflow-hidden" id="servicios">
         <div className="px-4 md:px-margin-desktop max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            <div className="lg:col-span-7 relative">
-              <div className="absolute -top-12 -left-12 w-64 h-64 bg-secondary-fixed opacity-30 rounded-full blur-3xl" />
-              <div className="absolute -bottom-12 -right-12 w-64 h-64 bg-primary-fixed opacity-30 rounded-full blur-3xl" />
-              <div className="relative bg-white p-2 rounded-xl shadow-2xl rotate-2 hover:rotate-0 transition-transform duration-500">
-                <img src={PRINT_IMG} alt="Printing techniques" className="rounded-lg w-full" />
-              </div>
-            </div>
-            <div className="lg:col-span-5 flex flex-col gap-6">
-              <h2 className="text-4xl font-bold">Técnicas de Impresión de Vanguardia</h2>
-              <p className="text-on-surface-variant">Utilizamos tecnología de punta para asegurar que cada diseño se mantenga vibrante y duradero.</p>
-              <div className="space-y-3">
-                {[
-                  { icon: "print", color: "text-primary", bg: "bg-primary/10", title: "DTF (Direct to Film)", desc: "Ideal para degradados complejos y colores vibrantes en cualquier tejido." },
-                  { icon: "layers", color: "text-secondary", bg: "bg-secondary/10", title: "Vinil Textil", desc: "Acabados mate o brillantes de alta resistencia para logos sólidos." },
-                  { icon: "palette", color: "text-on-secondary-fixed-variant", bg: "bg-on-secondary-fixed-variant/10", title: "Impresión Digital", desc: "Perfecto para accesorios y rígidos con precisión fotográfica." },
-                ].map(({ icon, color, bg, title, desc }) => (
-                  <div key={title} className="flex gap-4 p-4 bg-white rounded-xl border border-outline-variant hover:shadow-md transition-all">
-                    <div className={`flex-shrink-0 w-12 h-12 ${bg} flex items-center justify-center rounded-lg`}>
-                      <span className={`material-symbols-outlined ${color}`}>{icon}</span>
-                    </div>
-                    <div>
-                      <h4 className="text-sm font-bold mb-1">{title}</h4>
-                      <p className="text-sm text-on-surface-variant">{desc}</p>
-                    </div>
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold mb-2">Técnicas de Personalización</h2>
+            <p className="text-on-surface-variant">Tecnología de punta para resultados vibrantes y duraderos en cada pedido.</p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {[
+              {
+                img: DTF_IMG,
+                icon: "print",
+                iconBg: "bg-primary",
+                badge: "Más popular",
+                badgeCls: "bg-primary-container text-on-primary-container",
+                title: "DTF — Direct to Film",
+                desc: "Ideal para degradados y colores vibrantes sin límite de tonos. Alta resolución en cualquier tipo de tela."
+              },
+              {
+                img: VINYL_IMG,
+                icon: "layers",
+                iconBg: "bg-secondary",
+                badge: null as null,
+                badgeCls: "",
+                title: "Vinil Textil",
+                desc: "Acabados mate o brillantes de alta resistencia. Perfecto para logos sólidos con larga durabilidad."
+              },
+              {
+                img: DIGITAL_IMG,
+                icon: "palette",
+                iconBg: "bg-primary",
+                badge: null as null,
+                badgeCls: "",
+                title: "Impresión Digital",
+                desc: "Precisión fotográfica para tazas, termos y accesorios rígidos. Colores exactos a tu identidad de marca."
+              },
+            ].map(({ img, icon, iconBg, badge, badgeCls, title, desc }) => (
+              <div key={title} className="group rounded-2xl overflow-hidden border border-outline-variant shadow-md hover:shadow-xl transition-all duration-300 bg-white">
+                <div className="relative aspect-video overflow-hidden bg-surface-container">
+                  <img
+                    src={img}
+                    alt={title}
+                    className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+                  {badge && (
+                    <span className={`absolute top-4 left-4 ${badgeCls} px-3 py-1 rounded-full text-xs font-bold shadow`}>{badge}</span>
+                  )}
+                  <div className={`absolute bottom-4 left-4 w-10 h-10 ${iconBg} rounded-xl flex items-center justify-center shadow-lg`}>
+                    <span className="material-symbols-outlined text-white text-[20px]">{icon}</span>
                   </div>
-                ))}
+                </div>
+                <div className="p-6">
+                  <h3 className="text-lg font-bold mb-2">{title}</h3>
+                  <p className="text-sm text-on-surface-variant">{desc}</p>
+                </div>
               </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>
 
       {/* Process */}
       <section className="py-20 bg-background" id="proceso">
-        <div className="px-4 md:px-margin-desktop max-w-7xl mx-auto text-center flex flex-col gap-16">
-          <div className="flex flex-col gap-2">
-            <h2 className="text-4xl font-bold">Nuestro Proceso</h2>
-            <p className="text-on-surface-variant">Simple, rápido y profesional.</p>
+        <div className="px-4 md:px-margin-desktop max-w-7xl mx-auto flex flex-col gap-12">
+          <div className="text-center flex flex-col gap-2">
+            <h2 className="text-4xl font-bold">Proceso Comercial</h2>
+            <p className="text-on-surface-variant">Todo lo que necesitas saber para hacer tu pedido con nosotros.</p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 relative">
-            <div className="hidden md:block absolute top-10 left-1/4 right-1/4 h-0.5 bg-outline-variant/30" />
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
             {[
-              { num: "1", color: "bg-primary text-on-primary", title: "Eliges producto", desc: "Selecciona del catálogo la base perfecta para tu marca." },
-              { num: "2", color: "bg-secondary text-on-secondary", title: "Envías logo", desc: "Carga tu arte y ajustamos los detalles de producción." },
-              { num: "3", color: "bg-primary text-on-primary", title: "Recibes en 14 días", desc: "Enviamos tu pedido terminado directamente a tu puerta." },
-            ].map(({ num, color, title, desc }) => (
-              <div key={num} className="flex flex-col items-center gap-4 relative z-10">
-                <div className={`w-20 h-20 ${color} rounded-full flex items-center justify-center text-2xl font-bold shadow-lg mb-2`}>
-                  {num}
+              {
+                icon: "forum",
+                iconBg: "bg-primary",
+                iconColor: "text-on-primary",
+                title: "Canales de pedido",
+                details: ["WhatsApp", "Teléfono", "Correo electrónico"]
+              },
+              {
+                icon: "schedule",
+                iconBg: "bg-secondary",
+                iconColor: "text-on-secondary",
+                title: "Tiempo de entrega",
+                details: ["14 días hábiles"]
+              },
+              {
+                icon: "inventory_2",
+                iconBg: "bg-primary",
+                iconColor: "text-on-primary",
+                title: "Pedido mínimo",
+                details: ["12–15 piezas"]
+              },
+              {
+                icon: "payments",
+                iconBg: "bg-secondary",
+                iconColor: "text-on-secondary",
+                title: "Formas de pago",
+                details: ["Efectivo", "Anticipo requerido", "PayPal", "Transferencia bancaria"]
+              },
+              {
+                icon: "local_shipping",
+                iconBg: "bg-primary",
+                iconColor: "text-on-primary",
+                title: "Envíos",
+                details: ["Todo el país"]
+              },
+            ].map(({ icon, iconBg, iconColor, title, details }) => (
+              <div key={title} className="flex flex-col gap-4 p-6 rounded-2xl border border-outline-variant bg-surface-container-lowest hover:shadow-md transition-all">
+                <div className={`w-12 h-12 ${iconBg} rounded-xl flex items-center justify-center shadow-md shrink-0`}>
+                  <span className={`material-symbols-outlined ${iconColor}`}>{icon}</span>
                 </div>
-                <h3 className="text-xl font-bold">{title}</h3>
-                <p className="text-on-surface-variant text-sm px-4">{desc}</p>
+                <div>
+                  <h3 className="font-bold text-sm mb-2 text-on-surface">{title}</h3>
+                  <ul className="space-y-1">
+                    {details.map(d => (
+                      <li key={d} className="text-xs text-on-surface-variant flex items-start gap-1.5">
+                        <span className="w-1 h-1 rounded-full bg-primary inline-block shrink-0 mt-1.5" />
+                        {d}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
             ))}
           </div>
