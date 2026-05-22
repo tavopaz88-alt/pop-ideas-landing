@@ -1,20 +1,35 @@
 import { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import logo from "../assets/logo.jpeg";
 
-const links = [
+type NavItem = { label: string; to: string; sectionId?: string };
+
+const links: NavItem[] = [
   { label: "Home", to: "/" },
   { label: "Products", to: "/catalog" },
-  { label: "Services", to: "/#servicios" },
-  { label: "How it Works", to: "/#proceso" },
+  { label: "Services", to: "/#servicios", sectionId: "servicios" },
+  { label: "How it Works", to: "/#proceso", sectionId: "proceso" },
   { label: "Contact", to: "/quote" },
 ];
 
 export default function Nav() {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
 
-  const isActive = (to: string) => to === "/" ? location.pathname === "/" : location.pathname.startsWith(to.replace("/#", "/"));
+  const isActive = (item: NavItem) =>
+    item.sectionId ? false : item.to === "/" ? location.pathname === "/" : location.pathname.startsWith(item.to);
+
+  const handleHashNav = (e: React.MouseEvent, sectionId: string, closeDrawer?: () => void) => {
+    e.preventDefault();
+    closeDrawer?.();
+    if (location.pathname === "/") {
+      document.getElementById(sectionId)?.scrollIntoView({ behavior: "smooth" });
+    } else {
+      navigate("/");
+      setTimeout(() => document.getElementById(sectionId)?.scrollIntoView({ behavior: "smooth" }), 150);
+    }
+  };
 
   return (
     <>
@@ -33,19 +48,20 @@ export default function Nav() {
               </Link>
             </div>
             <nav className="hidden md:flex gap-8 items-center">
-              {links.map(({ label, to }) => (
-                <Link
-                  key={to}
-                  to={to}
-                  className={`text-sm font-medium transition-colors duration-200 pb-1 ${
-                    isActive(to)
-                      ? "text-primary border-b-2 border-primary font-bold"
-                      : "text-on-surface-variant hover:text-primary"
-                  }`}
-                >
-                  {label}
-                </Link>
-              ))}
+              {links.map((item) => {
+                const cls = `text-sm font-medium transition-colors duration-200 pb-1 ${
+                  isActive(item)
+                    ? "text-primary border-b-2 border-primary font-bold"
+                    : "text-on-surface-variant hover:text-primary"
+                }`;
+                return item.sectionId ? (
+                  <a key={item.to} href={item.to} className={cls} onClick={(e) => handleHashNav(e, item.sectionId!)}>
+                    {item.label}
+                  </a>
+                ) : (
+                  <Link key={item.to} to={item.to} className={cls}>{item.label}</Link>
+                );
+              })}
             </nav>
           </div>
           <div className="flex items-center gap-3">
@@ -88,18 +104,20 @@ export default function Nav() {
             </button>
           </div>
           <nav className="flex flex-col gap-6">
-            {links.map(({ label, to }) => (
-              <Link
-                key={to}
-                to={to}
-                onClick={() => setDrawerOpen(false)}
-                className={`flex items-center gap-4 text-lg font-medium ${
-                  isActive(to) ? "text-primary font-bold" : "text-on-surface-variant"
-                }`}
-              >
-                {label}
-              </Link>
-            ))}
+            {links.map((item) => {
+              const cls = `flex items-center gap-4 text-lg font-medium ${
+                isActive(item) ? "text-primary font-bold" : "text-on-surface-variant"
+              }`;
+              return item.sectionId ? (
+                <a key={item.to} href={item.to} className={cls} onClick={(e) => handleHashNav(e, item.sectionId!, () => setDrawerOpen(false))}>
+                  {item.label}
+                </a>
+              ) : (
+                <Link key={item.to} to={item.to} className={cls} onClick={() => setDrawerOpen(false)}>
+                  {item.label}
+                </Link>
+              );
+            })}
           </nav>
           <div className="mt-auto pt-10">
             <Link
